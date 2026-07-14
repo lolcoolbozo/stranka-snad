@@ -10,7 +10,7 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title style="color:white;">tokeny mnam mnam</title>
+    <title style="color:#182121;">tokeny mnam mnam</title>
     <!-- Refreshes the page every 5 seconds to grab new data -->
     <meta http-equiv="refresh" content="10"> 
     <style>
