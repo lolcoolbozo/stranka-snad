@@ -29,7 +29,7 @@ HTML_TEMPLATE = """
     </style>
 </head>
 <body style="background-color:#000e0f;">
-    <h2>tekeny ukradeny:</h2>
+    <h2 style="color:#007020;">tekeny ukradeny:</h2>
     
     <div class="history-container">
         {% if not history %}
