@@ -28,7 +28,7 @@ HTML_TEMPLATE = """
         .empty { color: #888; font-style: italic; }
     </style>
 </head>
-<body>
+<body style="background-color:#000e0f;">
     <h2>tekeny ukradeny:</h2>
     
     <div class="history-container">
