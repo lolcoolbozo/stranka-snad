@@ -10,7 +10,7 @@ HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>tokeny mnam mnam</title>
+    <title style="color:white;">tokeny mnam mnam</title>
     <!-- Refreshes the page every 5 seconds to grab new data -->
     <meta http-equiv="refresh" content="10"> 
     <style>
@@ -18,7 +18,7 @@ HTML_TEMPLATE = """
         .history-container { max-width: 600px; margin: 0 auto; text-align: left; }
         .message-box { 
             color: #2bc48a; 
-            background: #ffffff; 
+            background: #28393b; 
             padding: 15px; 
             margin-bottom: 10px; 
             border-radius: 8px; 
