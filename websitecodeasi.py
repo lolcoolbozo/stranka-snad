@@ -1,4 +1,5 @@
 from flask import Flask, request, render_template_string
+import os
 
 app = Flask(__name__)
 
@@ -36,5 +37,10 @@ def home():
     # If a regular browser visits the page, show the HTML
     return render_template_string(HTML_TEMPLATE, message=latest_message)
 
+
+
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Render assigns a port dynamically. If none is found, default to 5000.
+    port = int(os.environ.get("PORT", 5000))
+    # You MUST bind to 0.0.0.0 so Render can see the app
+    app.run(host="0.0.0.0", port=port)
