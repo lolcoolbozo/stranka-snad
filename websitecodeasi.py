@@ -14,7 +14,7 @@ HTML_TEMPLATE = """
     <!-- Refreshes the page every 5 seconds to grab new data -->
     <meta http-equiv="refresh" content="10"> 
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: #f9f9f9; }
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; background-color: ##182121; }
         .history-container { max-width: 600px; margin: 0 auto; text-align: left; }
         .message-box { 
             color: #2bc48a; 
