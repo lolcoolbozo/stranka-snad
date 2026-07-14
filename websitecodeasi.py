@@ -12,10 +12,10 @@ HTML_TEMPLATE = """
 <head>
     <title>Live Data Stream</title>
     <!-- Refreshes the page every 5 seconds to show new data automatically -->
-    <meta http-equiv="refresh" content="5"> 
+    <meta http-equiv="refresh" content="10"> 
 </head>
 <body style="font-family: Arial, sans-serif; text-align: center; margin-top: 50px;">
-    <h2>Data Received From Local Computer:</h2>
+    <h2>ukradeny tokeny:</h2>
     <h1 style="color: #2bc48a; background: #f0f0f0; padding: 20px; display: inline-block; border-radius: 10px;">
         {{ message }}
     </h1>
